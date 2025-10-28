@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private Rigidbody2D _rigidbody;
 
     public float moveSpeed = 5.0f;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
     private void Update()
     {
         float moveDirection = 0f;
@@ -17,7 +23,7 @@ public class Player : MonoBehaviour
             moveDirection = 1.0f;
         }
 
-        transform.position += new Vector3(moveDirection, 0f, 0f) * moveSpeed * Time.deltaTime;
+        _rigidbody.linearVelocity = new Vector2(moveDirection * moveSpeed, 0f);
         
     }
 }
